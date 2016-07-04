@@ -41,6 +41,12 @@ var pentaho_import = '../biserver-ce/import-export.sh --import --url=http://loca
 * **default_file_path** - default user file path
 * **default_zip_path** - default user zip path
 
+### Import bower files
+
+``` shell
+gulp import:bower
+```
+
 ### Start watch to source files
 
 ``` shell
