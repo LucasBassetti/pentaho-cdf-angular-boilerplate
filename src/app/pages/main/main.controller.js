@@ -3,12 +3,10 @@
 
     angular.module('app').controller('MainController', MainController);
 
-    MainController.$inject = ['Dashboard'];
+    MainController.$inject = [];
 
-    function MainController(Dashboard) {
+    function MainController() {
         var vm = this;
 
-        console.log(Dashboard);
-        Dashboard.addComponent();
     }
 })();
