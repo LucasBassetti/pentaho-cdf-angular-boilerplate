@@ -85,6 +85,7 @@ gulp.task('other', function () {
   return gulp.src([
     path.join(conf.paths.src, '/**/*'),
     path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss}'),
+    path.join('!' + conf.paths.src, '/assets/cdas/**/*'),
     path.join('!' + conf.paths.src, '/bower_components/**/*')
   ])
     .pipe(fileFilter)

@@ -36,4 +36,8 @@ gulp.task('watch', ['inject'], function () {
     gulp.watch(path.join(conf.paths.src, '/app/**/*.html'), function(event) {
         gulp.start('import-src');
     });
+
+    gulp.watch(path.join(conf.paths.src, '/assets/**/*.cda'), function(event) {
+        gulp.start('import-cda');
+    });
 });
