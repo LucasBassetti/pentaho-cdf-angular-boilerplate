@@ -5,15 +5,15 @@ var pentaho_import  = '../biserver-ce/import-export.sh --import --url=http://loc
 
     src_path        = "src",                                // user source path
     pentaho_path    = '/public/dashboards/retail',          // pentaho path
-    zipfile_path    = '../retail/zip',                      // user zip file path used in import command
-    zip_path        = 'zip',                                // user zip path used in zip command
+    zipfile_path    = '../retail/zip',                      // user file path
+    zip_path        = 'zip',                                // user zip path
 
     // pentaho paths
     path = {
         bower   : pentaho_path,                             // bower_components
         src     : pentaho_path,                             // scripts/html
-        styles  : pentaho_path + '/src/app',                // styles
-        html    : pentaho_path + '/src',                    // html (new files)
+        styles  : pentaho_path + '/' + src_path + '/app',   // styles
+        html    : pentaho_path + '/' + src_path,            // html (new files)
         cda     : pentaho_path + '/cdas',                   // cda files
         dist    : pentaho_path                              // dist
     }
@@ -38,7 +38,7 @@ var pentaho_import  = '../biserver-ce/import-export.sh --import --url=http://loc
         dist    : 'zip -r ' + zip_path + '/dist.zip dist',
     };
 
-/* SOURCE
+/* SOURCE TASKS
 =================================== */
 
 gulp.task('import:bower', shell.task([
@@ -70,7 +70,12 @@ gulp.task('import-cda', shell.task([
     pentaho_import + ' --path=' + path.cda + ' --file-path=' + file_path.cda
 ]));
 
-/* DIST
+// *.cda
+gulp.task('import:cda', shell.task([
+    gulp.start('import-cda')
+]));
+
+/* DIST TASKS
 =================================== */
 
 gulp.task('import:dist', ['clean'], function() {

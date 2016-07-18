@@ -19,8 +19,8 @@ var pentaho_import  = '../biserver-ce/import-export.sh --import --url=http://loc
     path = {
         bower   : pentaho_path,                             // bower_components
         src     : pentaho_path,                             // scripts/html
-        styles  : pentaho_path + '/src/app',                // styles
-        html    : pentaho_path + '/src',                    // html (new files)
+        styles  : pentaho_path + '/' + src_path + '/app',   // styles
+        html    : pentaho_path + '/' + src_path,            // html (new files)
         cda     : pentaho_path + '/cdas',                   // cda files
         dist    : pentaho_path                              // dist
     }
@@ -56,6 +56,12 @@ var pentaho_import  = '../biserver-ce/import-export.sh --import --url=http://loc
 
 ``` shell
 gulp import:bower
+```
+
+### Import cda files
+
+``` shell
+gulp import:cda
 ```
 
 ### Start watch to source files
