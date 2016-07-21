@@ -79,6 +79,7 @@ gulp.task('import:cda', shell.task([
 =================================== */
 
 gulp.task('import:dist', ['clean'], function() {
+    gulp.start('import-cda');
     gulp.start('import-dist');
 });
 
