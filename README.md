@@ -94,3 +94,7 @@ This command will watch the tests files like ``` gulp serve ``` command. A test.
 ``` shell
 gulp
 ```
+
+### Example of result of pentaho browse files
+
+<img src="https://raw.githubusercontent.com/LucasBassetti/pentaho-cdf-angular-boilerplate/master/imgs/pentaho-browse-files.png"/>
