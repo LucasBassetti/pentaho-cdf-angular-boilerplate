@@ -1,5 +1,0 @@
-angular.module("app").run(["$templateCache", function($templateCache) {$templateCache.put("app/common/content.html","<div ng-include=\"\'app/common/header/header.html\'\"></div><div ui-view=\"\" class=\"full-screen {{$state.current.name}}\"></div><div ng-include=\"\'app/common/footer/footer.html\'\"></div>");
-$templateCache.put("app/common/footer/footer.html","");
-$templateCache.put("app/common/header/header.html","");
-$templateCache.put("app/pages/empty/empty.html","<div class=\"row main-row animated fadeInRight\"><div class=\"col s12 m12 l12\"><div class=\"card\"><div class=\"card-content row no-margin\">Page Layout</div></div></div></div>");
-$templateCache.put("app/pages/main/main.html","<div class=\"container-fluid\"><div id=\"container\" class=\"container\"><div id=\"row\" class=\"row\"><div id=\"col\" class=\"col-sx-12\"><div id=\"msgContainer\" class=\"msgContainer\"></div><span class=\"test\">Hello Dear</span></div></div></div></div>");}]);
