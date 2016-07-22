@@ -35,7 +35,9 @@ gulp.task('inject', ['scripts', 'styles'], function () {
 
   return gulp.src([
       path.join(conf.paths.src, '/*.html'),
-      path.join(conf.paths.src, '/*.xcdf')
+      path.join(conf.paths.src, '/*.xcdf'),
+      path.join('!' + conf.paths.src, '/test.html'),
+      path.join('!' + conf.paths.src, '/test.xcdf')
     ])
     .pipe($.inject(injectStyles, injectOptions))
     .pipe($.inject(injectScripts, injectOptions))

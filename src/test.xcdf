@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdf>
+  <title>My first test dashboard!</title>
+  <author>My Name</author>
+  <description>Test file</description>
+  <icon></icon>
+  <template>test.html</template>
+  <style>clean</style>
+  <require>true</require>
+</cdf>
