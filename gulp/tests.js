@@ -57,6 +57,10 @@ gulp.task('scripts-test-reload', ['scripts'], function() {
 /* WATCH
 ====================================================================== */
 
+function isOnlyChange(event) {
+    return event.type === 'changed';
+}
+
 gulp.task('watch-test', ['inject-test'], function () {
 
     gulp.watch([path.join(conf.paths.src, '/*.html'), 'bower.json'], ['inject-test-reload']);
