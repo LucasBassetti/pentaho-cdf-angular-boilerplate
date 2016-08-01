@@ -5,7 +5,7 @@ var pentaho_import  = '../biserver-ce/import-export.sh --import --url=http://loc
 
     src_path        = "src",                                // user source path
     pentaho_path    = '/public/dashboards/myDashboard',     // pentaho path
-    zipfile_path    = '../retail/zip',                      // user file path
+    zipfile_path    = '../myDashboard/zip',                 // user file path
     zip_path        = 'zip',                                // user zip path
 
     // pentaho paths

@@ -2,5 +2,6 @@ node_modules
 coverage
 src/bower_components
 .tmp
-zip
+zip/*
+imgs
 dist
