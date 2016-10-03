@@ -3,12 +3,29 @@ var gulp    = require('gulp'),
     os      = require('os');
     gulpZip = require('gulp-zip');
 
-var pentaho_import  = '../biserver-ce/import-export.sh --import --url=http://localhost:8080/pentaho --username=Admin --password=password --overwrite=true --permission=true --retainOwnership=true',
+/* START: change these paths */
+var biServerCommandPath = '../biserver-ce/import-export.sh',  // bi-server import-export file path
+    petahoURL           = 'http://localhost:8080/pentaho',    // server url
+    pentahoUsername     = 'Admin',                            // pentaho username
+    pentahoPassword     = 'password';                         // pantaho password
+/* END: change these paths */
+
+// replace command for windows os
+if(os.platform() === 'win32') {
+    biServerCommandPath = biServerCommandPath.replace('.sh', '.bat');
+}
+
+var pentaho_import  = biServerCommandPath
+                      + ' --import'
+                      + ' --url=' + petahoURL
+                      + ' --username=' + pentahoUsername
+                      + ' --password=' + pentahoPassword
+                      + ' --overwrite=true --permission=true --retainOwnership=true',
 
     src_path          = "src",                                // user source path
     pentaho_path      = '/public/dashboards/myDashboard',     // pentaho path
     pentaho_dist_path = '/public/dashboards/myDashboard',     // pentaho dist path
-    zipfile_path      = '../myDashboard/zip',                 // user file path
+    zipfile_path      = '../myDashboard/zip/',                // user file path
     zip_path          = 'zip',                                // user zip path
 
     // pentaho paths

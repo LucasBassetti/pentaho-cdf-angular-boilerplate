@@ -4,11 +4,28 @@ Boilerplate to Pentaho [BIServer](https://sourceforge.net/projects/pentaho/files
 
 ### Configuration file
 
-* Open "gulp > import.js" and change paths.
+* Open `gulp > import.js` and change the paths between `START` and `END` comments to your project paths.
 
 ``` javascript
 
-var pentaho_import  = '../biserver-ce/import-export.sh --import --url=http://localhost:8080/pentaho --username=Admin --password=password --overwrite=true --permission=true --retainOwnership=true',
+/* START: change these paths */
+var biServerCommandPath = '../biserver-ce/import-export.sh',  // bi-server import-export file path
+    petahoURL           = 'http://localhost:8080/pentaho',    // server url
+    pentahoUsername     = 'Admin',                            // pentaho username
+    pentahoPassword     = 'password';                         // pantaho password
+/* END: change these paths */
+
+// replace command for windows os
+if(os.platform() === 'win32') {
+    biServerCommandPath = biServerCommandPath.replace('.sh', '.bat');
+}
+
+var pentaho_import  = biServerCommandPath
+                      + ' --import'
+                      + ' --url=' + petahoURL
+                      + ' --username=' + pentahoUsername
+                      + ' --password=' + pentahoPassword
+                      + ' --overwrite=true --permission=true --retainOwnership=true',
 
     src_path          = "src",                                // user source path
     pentaho_path      = '/public/dashboards/myDashboard',     // pentaho path
@@ -48,7 +65,10 @@ var file_path = {
     };
 
 ```
-
+* **biServerCommandPath** - path of pentaho import-export{.sh|.bat} file
+* **petahoURL** - pentaho server url
+* **pentahoUsername** - pentaho username
+* **pentahoPassword** - pentaho password
 * **pentaho_import** - command to import zip files to pentaho [biserver](https://sourceforge.net/projects/pentaho/files/Business%20Intelligence%20Server/)
 * **pentaho_path** - default pentaho path
 * **pentaho_dist_path** - default pentaho dist path
