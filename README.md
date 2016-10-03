@@ -27,11 +27,15 @@ var pentaho_import  = biServerCommandPath
                       + ' --password=' + pentahoPassword
                       + ' --overwrite=true --permission=true --retainOwnership=true',
 
-    src_path          = "src",                                // user source path
-    pentaho_path      = '/public/dashboards/myDashboard',     // pentaho path
-    pentaho_dist_path = '/public/dashboards/myDashboard',     // pentaho dist path
-    zipfile_path      = '../myDashboard/zip',                 // user file path
-    zip_path          = 'zip',                                // user zip path
+    src_path          = "src",                                      // user source path
+
+    /* START: change these paths */
+    pentaho_path      = '/public/dashboards/myDashboard',           // pentaho path
+    pentaho_dist_path = '/public/dashboards/myDashboard',           // pentaho dist path
+    zipfile_path      = '../pentaho-cdf-angular-boilerplate/zip/',  // user file path
+    /* END: change these paths */
+
+    zip_path          = 'zip',    
 
     // pentaho paths
     path = {
