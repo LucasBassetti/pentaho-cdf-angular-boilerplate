@@ -4,6 +4,7 @@ Boilerplate to Pentaho [BIServer](https://sourceforge.net/projects/pentaho/files
 
 ### Configuration file
 
+* Run `npm install` and `bower install` to install dependencies
 * Open `gulp > import.js` and change the paths between `START` and `END` comments to your project paths.
 
 ``` javascript
@@ -30,12 +31,13 @@ var pentaho_import  = biServerCommandPath
     src_path          = "src",                                      // user source path
 
     /* START: change these paths */
-    pentaho_path      = '/public/dashboards/myDashboard',           // pentaho path
-    pentaho_dist_path = '/public/dashboards/myDashboard',           // pentaho dist path
+    project_path      = 'myDashboard',                              // project path
+    pentaho_path      = '/' + project_path,                         // pentaho path
+    pentaho_dist_path = '/',                                        // pentaho dist path
     zipfile_path      = '../pentaho-cdf-angular-boilerplate/zip/',  // user file path
     /* END: change these paths */
 
-    zip_path          = 'zip',    
+    zip_path          = 'zip',                                      // user zip path  
 
     // pentaho paths
     path = {

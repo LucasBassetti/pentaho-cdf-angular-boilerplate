@@ -25,8 +25,9 @@ var pentaho_import  = biServerCommandPath
     src_path          = "src",                                      // user source path
 
     /* START: change these paths */
-    pentaho_path      = '/public/dashboards/myDashboard',           // pentaho path
-    pentaho_dist_path = '/public/dashboards/myDashboard',           // pentaho dist path
+    project_path      = 'myDashboard',                              // project path
+    pentaho_path      = '/' + project_path,                         // pentaho path
+    pentaho_dist_path = '/',                                        // pentaho dist path
     zipfile_path      = '../pentaho-cdf-angular-boilerplate/zip/',  // user file path
     /* END: change these paths */
 
