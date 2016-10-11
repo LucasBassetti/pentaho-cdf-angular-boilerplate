@@ -34,10 +34,8 @@ var pentaho_import  = biServerCommandPath
     project_path      = 'myDashboard',                              // project path
     pentaho_path      = '/' + project_path,                         // pentaho path
     pentaho_dist_path = '/',                                        // pentaho dist path
-    zipfile_path      = '../pentaho-cdf-angular-boilerplate/zip/',  // user file path
+    zipfile_path      = '../pentaho-cdf-angular-boilerplate/zip/',  // user file path. NOTE: this path should be relative to your bi-server path
     /* END: change these paths */
-
-    zip_path          = 'zip',                                      // user zip path  
 
     // pentaho paths
     path = {
@@ -79,7 +77,7 @@ var file_path = {
 * **pentaho_path** - default pentaho path
 * **pentaho_dist_path** - default pentaho dist path
 * **zipfile_path** - user zip file path used in import command
-* **zip_path** - zip path used in zip command
+* **zip_path** - zip path used in zip command. **NOTE:** this path should be relative to bi-server path
 
 ### Import bower files
 

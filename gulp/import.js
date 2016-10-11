@@ -4,7 +4,7 @@ var gulp    = require('gulp'),
     gulpZip = require('gulp-zip');
 
 /* START: change these paths */
-var biServerCommandPath = '../biserver-ce/import-export.sh',  // bi-server import-export file path
+var biServerCommandPath = '../../repositories/biserver-ce/import-export.sh',  // bi-server import-export file path
     petahoURL           = 'http://localhost:8080/pentaho',    // server url
     pentahoUsername     = 'Admin',                            // pentaho username
     pentahoPassword     = 'password';                         // pantaho password
@@ -28,10 +28,8 @@ var pentaho_import  = biServerCommandPath
     project_path      = 'myDashboard',                              // project path
     pentaho_path      = '/' + project_path,                         // pentaho path
     pentaho_dist_path = '/',                                        // pentaho dist path
-    zipfile_path      = '../pentaho-cdf-angular-boilerplate/zip/',  // user file path
+    zipfile_path      = '../pentaho-cdf-angular-boilerplate/zip/',  // user file path. NOTE: this path should be relative to your bi-server
     /* END: change these paths */
-
-    zip_path          = 'zip',                                      // user zip path
 
     // pentaho paths
     path = {
