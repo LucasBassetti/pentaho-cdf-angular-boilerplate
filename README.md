@@ -79,6 +79,14 @@ var file_path = {
 * **zipfile_path** - user zip file path used in import command
 * **zip_path** - zip path used in zip command. **NOTE:** this path should be relative to bi-server path
 
+### Add new pentaho components
+
+Open the `index.run.js` and see how to add new pentaho components.
+
+### Create CDA files
+
+To create cda files, you must use the folder `assets/cdas`. These files will be used in the `components.service.js`, you need change the `_cdasPath` present in the file to your dashboard pentaho path.
+
 ### Import bower files
 
 ``` shell
@@ -112,6 +120,12 @@ This command will watch the tests files like ``` gulp serve ``` command. A test.
 ``` shell
 gulp
 ```
+
+### Known issues
+
+1. The command `gulp import:bower` sometimes don't import all files. When this happens, you need run this command more times until all files be imported.
+
+2. When you install some bower component with `bower install` and an error with `define` expression appear, you should open the file imported in `bower_components` and remove all `define(...)` present in the archive. This error is some incompatibility with pentaho requirejs.
 
 ### Example of result of pentaho browse files
 
