@@ -38,7 +38,6 @@
          * @param {Object} dashboard - dashboard object
          */
         function setDashboard(dashboard) {
-            console.log('set dashboard');
             this._dashboard = dashboard;
         }
 
