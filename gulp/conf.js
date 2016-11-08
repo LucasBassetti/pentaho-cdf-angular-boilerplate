@@ -25,8 +25,6 @@ exports.paths = {
  */
  exports.wiredep = {
      exclude: [
-         /\/bootstrap\.js$/,
-         /\/bootstrap\.css/,
          'src/bower_components/jasmine-core',
          'src/bower_components/angular-mocks'
      ],
