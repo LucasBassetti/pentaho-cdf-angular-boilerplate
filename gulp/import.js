@@ -4,8 +4,6 @@ var gulp    = require('gulp'),
     gulpZip = require('gulp-zip'),
     conf    = require('./import-conf');
 
-console.log(conf);
-
 /* START: change these paths */
 var bi_server_command_path  = conf.bi_server_command_path
     petaho_URL              = conf.petaho_URL,
@@ -15,7 +13,7 @@ var bi_server_command_path  = conf.bi_server_command_path
 
 // replace command for windows os
 if(os.platform() === 'win32') {
-    biServerCommandPath = biServerCommandPath.replace('.sh', '.bat');
+    bi_server_command_path = bi_server_command_path.replace('.sh', '.bat');
 }
 
 var pentaho_import  = bi_server_command_path
