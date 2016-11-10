@@ -1,13 +1,16 @@
 var gulp    = require('gulp'),
     shell   = require('gulp-shell'),
     os      = require('os');
-    gulpZip = require('gulp-zip');
+    gulpZip = require('gulp-zip'),
+    conf    = require('./import-conf');
+
+console.log(conf);
 
 /* START: change these paths */
-var biServerCommandPath = '../../repositories/biserver-ce/import-export.sh',  // bi-server import-export file path
-    petahoURL           = 'http://localhost:8080/pentaho',    // server url
-    pentahoUsername     = 'Admin',                            // pentaho username
-    pentahoPassword     = 'password';                         // pantaho password
+var bi_server_command_path  = conf.bi_server_command_path
+    petaho_URL              = conf.petaho_URL,
+    pentaho_username        = conf.pentaho_username,
+    pentaho_password        = conf.pentaho_password;
 /* END: change these paths */
 
 // replace command for windows os
@@ -15,32 +18,28 @@ if(os.platform() === 'win32') {
     biServerCommandPath = biServerCommandPath.replace('.sh', '.bat');
 }
 
-var pentaho_import  = biServerCommandPath
+var pentaho_import  = bi_server_command_path
                       + ' --import'
-                      + ' --url=' + petahoURL
-                      + ' --username=' + pentahoUsername
-                      + ' --password=' + pentahoPassword
+                      + ' --url=' + petaho_URL
+                      + ' --username=' + pentaho_username
+                      + ' --password=' + pentaho_password
                       + ' --overwrite=true --permission=true --retainOwnership=true',
 
-    src_path          = "src",                                      // user source path
-
-    /* START: change these paths */
-    project_path      = 'myDashboard',                              // project path
-    pentaho_path      = '/' + project_path,                         // pentaho path
-    pentaho_dist_path = '/',                                        // pentaho dist path
-    zipfile_path      = '../pentaho-cdf-angular-boilerplate/zip/',  // user file path. NOTE: this path should be relative to your bi-server
-    /* END: change these paths */
+    project_path      = conf.project_path,
+    pentaho_path      = conf.pentaho_path,
+    pentaho_dist_path = conf.pentaho_dist_path,
+    zipfile_path      = conf.zipfile_path,
 
     // pentaho paths
     path = {
         bower   : pentaho_path,                             // bower_components
         src     : pentaho_path,                             // scripts/html
-        styles  : pentaho_path + '/' + src_path + '/app',   // styles
-        html    : pentaho_path + '/' + src_path,            // html (new files)
+        styles  : pentaho_path + '/src/app',                // styles
+        html    : pentaho_path + '/src',                    // html (new files)
         cda     : pentaho_path + '/cdas',                   // cda files
         dist    : pentaho_dist_path,                        // dist
 
-        testHtml: pentaho_path + '/' + src_path,            // html (new files)
+        testHtml: pentaho_path + '/src',                    // html (new files)
         test    : pentaho_path,                             // scripts/html
     };
 
@@ -66,7 +65,7 @@ var file_path = {
 =================================== */
 
 gulp.task('zip:bower', function() {
-    return gulp.src('./' + src_path + '/bower_components/**', {
+    return gulp.src('./src/bower_components/**', {
             base: './'
         })
         .pipe(gulpZip('bower_components.zip'))
@@ -78,7 +77,7 @@ gulp.task('import:bower', ['zip:bower'], shell.task([
 
 // *.js and *.html
 gulp.task('zip:src', function() {
-    return gulp.src('./' + src_path + '/app/**', {
+    return gulp.src('./src/app/**', {
             base: './'
         })
         .pipe(gulpZip('src.zip'))
@@ -110,39 +109,14 @@ gulp.task('import-src-html', ['zip:src-index'], shell.task([
 
 // *.cda
 gulp.task('zip:cda', function() {
-    return gulp.src('./' + src_path + '/assets/cdas/**', {
-            base: './' + src_path + '/assets/cdas'
+    return gulp.src('./src/assets/cdas/**', {
+            base: './src/assets/cdas'
         })
         .pipe(gulpZip('cda.zip'))
         .pipe(gulp.dest('./zip'));
 });
 gulp.task('import-cda', ['zip:cda'], shell.task([
     pentaho_import + ' --path=' + path.cda + ' --file-path=' + file_path.cda
-]));
-
-/* TESTS TASKS
-=================================== */
-
-// index.html
-gulp.task('zip:test-html', function() {
-    return gulp.src(['./.tmp/serve/test.html', './.tmp/serve/test.xcdf'])
-        .pipe(gulpZip('test.zip'))
-        .pipe(gulp.dest('./zip'));
-});
-gulp.task('import-test-html', ['zip:test-html'], shell.task([
-    pentaho_import + ' --path=' + path.testHtml + ' --file-path=' + file_path.testHtml
-]));
-
-// *.spec.js
-gulp.task('zip:test', function() {
-    return gulp.src('./' + src_path + '/tests/jasmine/**', {
-        base: './' + src_path + '/tests/jasmine'
-    })
-        .pipe(gulpZip('specs.zip'))
-        .pipe(gulp.dest('./zip'));
-});
-gulp.task('import-test', ['zip:test'], shell.task([
-    pentaho_import + ' --path=' + path.test + ' --file-path=' + file_path.test
 ]));
 
 /* DIST TASKS
@@ -167,4 +141,29 @@ gulp.task('zip:dist', function() {
 
 gulp.task('import-dist', ['zip:dist'], shell.task([
     pentaho_import + ' --path=' + path.dist + ' --file-path=' + file_path.dist
+]));
+
+/* TESTS TASKS
+=================================== */
+
+// index.html
+gulp.task('zip:test-html', function() {
+    return gulp.src(['./.tmp/serve/test.html', './.tmp/serve/test.xcdf'])
+        .pipe(gulpZip('test.zip'))
+        .pipe(gulp.dest('./zip'));
+});
+gulp.task('import-test-html', ['zip:test-html'], shell.task([
+    pentaho_import + ' --path=' + path.testHtml + ' --file-path=' + file_path.testHtml
+]));
+
+// *.spec.js
+gulp.task('zip:test', function() {
+    return gulp.src('./src/tests/jasmine/**', {
+        base: './src/tests/jasmine'
+    })
+        .pipe(gulpZip('specs.zip'))
+        .pipe(gulp.dest('./zip'));
+});
+gulp.task('import-test', ['zip:test'], shell.task([
+    pentaho_import + ' --path=' + path.test + ' --file-path=' + file_path.test
 ]));
