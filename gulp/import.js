@@ -117,6 +117,10 @@ gulp.task('import-cda', ['zip:cda'], shell.task([
     pentaho_import + ' --path=' + path.cda + ' --file-path=' + file_path.cda
 ]));
 
+gulp.task('import:cda', function() {
+    gulp.start('import-cda');
+});
+
 /* DIST TASKS
 =================================== */
 
