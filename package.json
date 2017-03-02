@@ -1,7 +1,8 @@
 {
   "name": "pentaho-cdf-angular-boilerplate",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {},
+  "license": "MIT",
   "scripts": {
     "test": "gulp test"
   },
